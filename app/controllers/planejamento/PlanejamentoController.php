@@ -39,7 +39,7 @@ class PlanejamentoController extends Controller
             'resumoPorStatus' => $resumoPorStatus,
             'resumoGeral' => $resumoGeral,
             'pagination' => $pagination
-        ], 'Planejamento');
+        ], 'Planejamento', 'template_modulos');
     }
 
     public function importar()

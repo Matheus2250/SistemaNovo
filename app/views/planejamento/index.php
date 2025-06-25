@@ -62,8 +62,23 @@
             padding: 20px 0;
         }
 
+        .nav-section {
+            margin-bottom: 25px;
+        }
+
+        .nav-section-title {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0 25px 10px 25px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
         .nav-item {
-            margin-bottom: 5px;
+            margin-bottom: 3px;
         }
 
         .nav-link {
@@ -84,10 +99,64 @@
             text-decoration: none;
         }
 
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .nav-link.active {
+            background: rgba(76, 175, 80, 0.2);
+            border-left-color: #4CAF50;
+        }
+
         .nav-icon {
             margin-right: 15px;
             width: 20px;
             height: 20px;
+        }
+
+        /* Sidebar Summary */
+        .sidebar-summary {
+            padding: 20px;
+            margin: 20px 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .summary-title {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .summary-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+        }
+
+        .summary-number {
+            color: white;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .summary-label {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .sidebar-footer {
@@ -140,8 +209,9 @@
         .main-content {
             flex: 1;
             margin-left: 280px;
-            padding: 30px;
+            padding: 40px 30px 30px 30px;
             transition: margin-left 0.3s ease;
+            min-height: 100vh;
         }
 
         .main-content.sidebar-closed {
@@ -152,30 +222,27 @@
         .sidebar-toggle {
             position: fixed;
             top: 20px;
-            left: 20px;
+            left: 290px;
             z-index: 1001;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(20px);
             border: none;
-            border-radius: 8px;
-            padding: 12px;
+            border-radius: 12px;
+            padding: 14px;
             color: white;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
 
         .sidebar-toggle:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
         }
 
         body.sidebar-closed .sidebar-toggle {
-            left: 20px;
-        }
-
-        body:not(.sidebar-closed) .sidebar-toggle {
-            left: 300px;
+            left: 20px !important;
         }
 
 
@@ -219,23 +286,42 @@
         /* Stats Cards */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
         }
 
         .stat-card {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(20px);
-            border-radius: 15px;
-            padding: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
+            border-radius: 18px;
+            padding: 30px 25px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
         }
 
         .stat-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px) scale(1.02);
             background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .stat-card:hover:before {
+            transform: translateX(100%);
         }
 
         .stat-header {
@@ -256,7 +342,22 @@
         .stat-icon {
             width: 24px;
             height: 24px;
-            color: #4CAF50;
+        }
+
+        .stat-card:nth-child(1) .stat-icon {
+            color: #E74C3C !important;
+        }
+
+        .stat-card:nth-child(2) .stat-icon {
+            color: #2ECC71 !important;
+        }
+
+        .stat-card:nth-child(3) .stat-icon {
+            color: #3498DB !important;
+        }
+
+        .stat-card:nth-child(4) .stat-icon {
+            color: #F39C12 !important;
         }
 
         .stat-value {
@@ -305,11 +406,22 @@
 
         /* Chart Container */
         .chart-container {
-            padding: 25px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .chart-wrapper {
+            width: 150px !important;
+            max-width: 150px !important;
+            height: 150px !important;
         }
 
         .chart-canvas {
-            max-height: 400px;
+            max-height: 150px !important;
+            max-width: 150px !important;
+            width: 150px !important;
+            height: 150px !important;
         }
 
         /* Table Styles */
@@ -481,35 +593,93 @@
                         Início
                     </a>
                 </div>
-                <div class="nav-item">
-                    <a href="<?= BASE_URL ?>planejamento/index" class="nav-link active">
-                        <i data-lucide="calendar-check" class="nav-icon"></i>
-                        Dashboard
-                    </a>
+                
+                <!-- Seção Planejamento -->
+                <div class="nav-section">
+                    <div class="nav-section-title">Planejamento</div>
+                    <div class="nav-item">
+                        <a href="<?= BASE_URL ?>planejamento/index" class="nav-link active">
+                            <i data-lucide="calendar-check" class="nav-icon"></i>
+                            Dashboard
+                        </a>
+                    </div>
+                    <?php if (podeImportarPCA()): ?>
+                    <div class="nav-item">
+                        <a href="<?= BASE_URL ?>planejamento/importar" class="nav-link">
+                            <i data-lucide="upload" class="nav-icon"></i>
+                            Importar PCA
+                        </a>
+                    </div>
+                    <?php endif; ?>
+                    <div class="nav-item">
+                        <a href="#" onclick="scrollToTable()" class="nav-link">
+                            <i data-lucide="table" class="nav-icon"></i>
+                            Ver Contratações
+                        </a>
+                    </div>
                 </div>
-                <?php if (podeImportarPCA()): ?>
-                <div class="nav-item">
-                    <a href="<?= BASE_URL ?>planejamento/importar" class="nav-link">
-                        <i data-lucide="upload" class="nav-icon"></i>
-                        Importar Dados
-                    </a>
+                
+                <!-- Seção Sistema -->
+                <div class="nav-section">
+                    <div class="nav-section-title">Sistema</div>
+                    <div class="nav-item">
+                        <a href="<?= BASE_URL ?>licitacoes/index" class="nav-link">
+                            <i data-lucide="clipboard-list" class="nav-icon"></i>
+                            Licitações
+                        </a>
+                    </div>
+                    <div class="nav-item">
+                        <a href="<?= BASE_URL ?>contratos/index" class="nav-link">
+                            <i data-lucide="file-signature" class="nav-icon"></i>
+                            Contratos
+                        </a>
+                    </div>
+                    <?php if ($_SESSION['usuario']['tipo_usuario'] === 'admin'): ?>
+                    <div class="nav-item">
+                        <a href="<?= BASE_URL ?>usuarios/index" class="nav-link">
+                            <i data-lucide="users" class="nav-icon"></i>
+                            Usuários
+                        </a>
+                    </div>
+                    <?php endif; ?>
                 </div>
-                <?php endif; ?>
-                <div class="nav-item">
-                    <a href="<?= BASE_URL ?>licitacoes/index" class="nav-link">
-                        <i data-lucide="clipboard-list" class="nav-icon"></i>
-                        Licitações
-                    </a>
+                
+                <!-- Seção Relatórios -->
+                <div class="nav-section">
+                    <div class="nav-section-title">Relatórios</div>
+                    <div class="nav-item">
+                        <a href="#" onclick="exportarDados()" class="nav-link">
+                            <i data-lucide="download" class="nav-icon"></i>
+                            Exportar Dados
+                        </a>
+                    </div>
+                    <div class="nav-item">
+                        <a href="#" onclick="gerarRelatorio()" class="nav-link">
+                            <i data-lucide="bar-chart-3" class="nav-icon"></i>
+                            Relatório PCA
+                        </a>
+                    </div>
                 </div>
-                <?php if ($_SESSION['usuario']['tipo_usuario'] === 'admin'): ?>
-                <div class="nav-item">
-                    <a href="<?= BASE_URL ?>usuarios/index" class="nav-link">
-                        <i data-lucide="users" class="nav-icon"></i>
-                        Usuários
-                    </a>
-                </div>
-                <?php endif; ?>
             </nav>
+
+            <!-- Resumo Rápido -->
+            <div class="sidebar-summary">
+                <div class="summary-title">Resumo Rápido</div>
+                <div class="summary-stats">
+                    <div class="summary-item">
+                        <span class="summary-number"><?= count($contratacoes) ?></span>
+                        <span class="summary-label">Contratações</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-number">R$ <?= number_format(($resumoGeral['valor_total'] ?: 0) / 1000000, 1) ?>M</span>
+                        <span class="summary-label">Valor Total</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-number"><?= count($contratacoes) - array_sum(array_column($contratacoes, 'ja_licitada')) ?></span>
+                        <span class="summary-label">Pendentes</span>
+                    </div>
+                </div>
+            </div>
 
             <div class="sidebar-footer">
                 <div class="user-info">
@@ -536,7 +706,7 @@
                 <div class="stat-card">
                     <div class="stat-header">
                         <div class="stat-title">Total de Contratações</div>
-                        <i data-lucide="briefcase" class="stat-icon"></i>
+                        <i data-lucide="briefcase" class="stat-icon" style="color: #E74C3C !important;"></i>
                     </div>
                     <div class="stat-value"><?= count($contratacoes) ?></div>
                     <div class="stat-label">Registros no PCA</div>
@@ -579,16 +749,21 @@
                     </h3>
                 </div>
                 <div class="chart-container">
-                    <canvas id="statusChart" class="chart-canvas"></canvas>
+                    <div class="chart-wrapper">
+                        <canvas id="statusChart" class="chart-canvas"></canvas>
+                    </div>
                 </div>
             </div>
 
             <!-- Data Table -->
-            <div class="content-section">
+            <div class="content-section" id="tabela-contratacoes">
                 <div class="section-header">
                     <h3 class="section-title">
                         <i data-lucide="list" style="width: 20px; height: 20px;"></i>
                         Contratações do PCA
+                        <span class="badge badge-info" style="margin-left: 10px; font-size: 10px;">
+                            <?= count($contratacoes) ?> registros
+                        </span>
                     </h3>
                     <div class="section-actions">
                         <button class="btn btn-secondary btn-sm" onclick="exportarDados()">
@@ -727,11 +902,11 @@
             const labels = statusData.map(item => item.status_contratacao.replace('_', ' '));
             const data = statusData.map(item => item.total_contratacoes);
             const colors = [
-                'rgba(76, 175, 80, 0.8)',
-                'rgba(33, 150, 243, 0.8)', 
-                'rgba(255, 193, 7, 0.8)',
-                'rgba(244, 67, 54, 0.8)',
-                'rgba(158, 158, 158, 0.8)'
+                'rgba(231, 76, 60, 0.9)',    // Vermelho
+                'rgba(46, 204, 113, 0.9)',   // Verde
+                'rgba(52, 152, 219, 0.9)',   // Azul
+                'rgba(243, 156, 18, 0.9)',   // Laranja
+                'rgba(155, 89, 182, 0.9)'    // Roxo
             ];
 
             new Chart(ctx, {
@@ -747,15 +922,15 @@
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: false,
+                    maintainAspectRatio: true,
                     plugins: {
                         legend: {
                             position: 'bottom',
                             labels: {
                                 color: 'rgba(255, 255, 255, 0.8)',
-                                padding: 20,
+                                padding: 10,
                                 font: {
-                                    size: 12
+                                    size: 10
                                 }
                             }
                         }
@@ -778,7 +953,50 @@
 
         // Exportar dados
         function exportarDados() {
-            alert('Funcionalidade de exportação em desenvolvimento');
+            const btn = event.target.closest('.nav-link') || event.target;
+            const originalText = btn.innerHTML;
+            
+            btn.innerHTML = '<i data-lucide="loader-2" style="width: 16px; height: 16px; margin-right: 10px; animation: spin 1s linear infinite;"></i>Exportando...';
+            
+            // Simular exportação
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                lucide.createIcons();
+                
+                // Criar e baixar arquivo CSV
+                const csvContent = "data:text/csv;charset=utf-8," 
+                    + "Número,Título,Área,Valor,Status\n"
+                    + "<?php foreach($contratacoes as $c): ?>"
+                    + "<?= $c['numero_contratacao'] ?>,<?= addslashes($c['titulo_contratacao']) ?>,<?= $c['area_requisitante'] ?>,<?= $c['valor_total_contratacao'] ?>,<?= $c['status_contratacao'] ?>\n"
+                    + "<?php endforeach; ?>";
+                    
+                const encodedUri = encodeURI(csvContent);
+                const link = document.createElement("a");
+                link.setAttribute("href", encodedUri);
+                link.setAttribute("download", "planejamento_pca.csv");
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }, 2000);
+        }
+
+        // Scroll para tabela
+        function scrollToTable() {
+            const tableSection = document.getElementById('tabela-contratacoes');
+            if (tableSection) {
+                tableSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                
+                // Adicionar efeito visual temporário
+                tableSection.style.boxShadow = '0 0 20px rgba(255, 255, 255, 0.3)';
+                setTimeout(() => {
+                    tableSection.style.boxShadow = '';
+                }, 2000);
+            }
+        }
+
+        // Gerar relatório
+        function gerarRelatorio() {
+            alert('Funcionalidade de relatório em desenvolvimento');
         }
 
         // Sidebar toggle function
